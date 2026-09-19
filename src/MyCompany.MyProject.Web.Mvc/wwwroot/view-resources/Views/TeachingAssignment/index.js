@@ -46,11 +46,11 @@
         });
         _subjectService.getAll({ maxResultCount: 1000 }).done(function (res) {
             $('#AssignSubjectSelect').empty();
-            res.items.forEach(s => $('#AssignSubjectSelect').append(new Option(s.subjectName, s.id)));
+            res.items.forEach(s => $('#AssignSubjectSelect').append(new Option(s.name, s.id)));
         });
         _semesterService.getAll({ maxResultCount: 1000 }).done(function (res) {
             $('#AssignSemesterSelect').empty();
-            res.items.forEach(sem => $('#AssignSemesterSelect').append(new Option(sem.semesterName, sem.id)));
+            res.items.forEach(sem => $('#AssignSemesterSelect').append(new Option(sem.name, sem.id)));
         });
     });
 
