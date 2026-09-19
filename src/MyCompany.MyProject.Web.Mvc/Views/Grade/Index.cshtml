@@ -1,0 +1,81 @@
+﻿@using MyCompany.MyProject.Authorization
+@{
+    ViewBag.Title = "Sổ Điểm Học Sinh";
+}
+@section scripts {
+    <script src="~/view-resources/Views/Grade/Index.js" asp-append-version="true"></script>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Sổ Điểm Học Sinh</h1>
+            </div>
+            <div class="col-sm-6 text-right">
+                @if (IsGranted(PermissionNames.Pages_Grades_Lock))
+                {
+                    <button id="btnLockGrade" class="btn btn-warning mr-2" style="display:none;">
+                        <i class="fa fa-lock"></i> <span id="lockStatusText">Khóa sổ</span>
+                    </button>
+                }
+                @if (IsGranted(PermissionNames.Pages_Grades_Input))
+                {
+                    <button id="btnSaveGrade" class="btn btn-success" style="display:none;">
+                        <i class="fa fa-save"></i> Lưu bảng điểm
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <!-- Bộ lọc lớp, môn, kỳ -->
+        <div class="card card-default">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Học kỳ</label>
+                        <select id="SemesterFilter" class="form-control select2"></select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Lớp học</label>
+                        <select id="ClassFilter" class="form-control select2"></select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>Môn học</label>
+                        <select id="SubjectFilter" class="form-control select2"></select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bảng lưới nhập điểm -->
+        <div class="card">
+            <div class="card-body table-responsive p-0">
+                <table id="GradeGridTable" class="table table-bordered table-hover text-center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Mã HS</th>
+                            <th>Họ và Tên</th>
+                            <th style="width: 85px;">TX 1</th>
+                            <th style="width: 85px;">TX 2</th>
+                            <th style="width: 85px;">TX 3</th>
+                            <th style="width: 85px;">Giữa kỳ</th>
+                            <th style="width: 85px;">Cuối kỳ</th>
+                            <th style="width: 90px;">ĐTB</th>
+                            <th style="width: 120px;">Xếp loại</th>
+                        </tr>
+                    </thead>
+                    <tbody id="GradeTableBody">
+                        <tr>
+                            <td colspan="9" class="text-muted">Vui lòng chọn đầy đủ Học kỳ, Lớp và Môn để tải sổ điểm.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

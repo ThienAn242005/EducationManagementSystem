@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Quản lý Giáo viên";
+}
+@section scripts {
+    <script src="~/view-resources/Views/Teacher/Index.js" asp-append-version="true"></script>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6"><h1>Hồ sơ Giáo viên</h1></div>
+            <div class="col-sm-6 text-right">
+                <button type="button" id="btnCreateTeacher" class="btn btn-primary">
+                    <i class="fa fa-plus-square"></i> Thêm Giáo viên
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body table-responsive">
+                <table id="TeacherTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Mã GV</th>
+                            <th>Họ và Tên</th>
+                            <th>Số điện thoại</th>
+                            <th>Môn chuyên trách</th>
+                            <th>Vai trò</th>
+                            <th style="width: 150px">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="TeacherCreateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm Giáo viên</h5>
+                <button type="button" class="close" id="btnCloseTeacherModal">&times;</button>
+            </div>
+            <form id="TeacherCreateForm">
+                <div class="modal-body">
+                    <!-- Dropdown chọn tài khoản User có sẵn -->
+                    <div class="form-group">
+                        <label>Tài khoản liên kết (User Account) <span class="text-danger">*</span></label>
+                        <select name="UserId" id="TeacherUserSelect" class="form-control" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Mã giáo viên <span class="text-danger">*</span></label>
+                        <input type="text" name="TeacherCode" class="form-control" placeholder="Ví dụ: GV001" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Họ và Tên <span class="text-danger">*</span></label>
+                        <input type="text" name="FullName" class="form-control" placeholder="Ví dụ: Nguyễn Văn A" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Số điện thoại</label>
+                        <input type="text" name="PhoneNumber" class="form-control" placeholder="Ví dụ: 0912345678" />
+                    </div>
+                    <div class="form-group">
+                        <label>Môn chuyên trách</label>
+                        <select name="MainSubjectId" id="TeacherSubjectSelect" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="isPrincipalCheck" name="IsPrincipal" value="true">
+                            <label class="custom-control-label" for="isPrincipalCheck">Ban giám hiệu / Hiệu trưởng (Có quyền khóa sổ điểm)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnCancelTeacherModal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

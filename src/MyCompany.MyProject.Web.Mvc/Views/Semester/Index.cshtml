@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Quản lý Học kỳ";
+}
+@section scripts {
+    <script src="~/view-resources/Views/Semester/Index.js" asp-append-version="true"></script>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6"><h1>Danh sách Học kỳ</h1></div>
+            <div class="col-sm-6 text-right">
+                <button type="button" id="btnCreateSemester" class="btn btn-primary">
+                    <i class="fa fa-plus-square"></i> Thêm Học kỳ
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body table-responsive">
+                <table id="SemesterTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Tên học kỳ</th>
+                            <th>Năm bắt đầu</th>
+                            <th>Trạng thái hiện tại</th>
+                            <th style="width: 150px">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="SemesterCreateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm Học kỳ</h5>
+                <button type="button" class="close" id="btnCloseSemesterModal">&times;</button>
+            </div>
+            <form id="SemesterCreateForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Tên học kỳ</label>
+                        <input type="text" name="Name" class="form-control" placeholder="Ví dụ: Học kỳ 1 - 2026" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Năm bắt đầu</label>
+                        <input type="number" name="StartYear" class="form-control" value="2026" required />
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" name="IsCurrent" value="true" class="form-check-input" id="isCurrentSem" />
+                        <label class="form-check-label" for="isCurrentSem">Đặt làm học kỳ hiện tại</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnCancelSemesterModal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

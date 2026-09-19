@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Quản lý Học sinh";
+}
+@section scripts {
+    <script src="~/view-resources/Views/Student/Index.js" asp-append-version="true"></script>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6"><h1>Hồ sơ Học sinh</h1></div>
+            <div class="col-sm-6 text-right">
+                <button type="button" id="btnCreateStudent" class="btn btn-primary">
+                    <i class="fa fa-plus-square"></i> Thêm Học sinh
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body table-responsive">
+                <table id="StudentTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Mã HS</th>
+                            <th>Họ và Tên</th>
+                            <th>Giới tính</th>
+                            <th>Lớp</th>
+                            <th>Địa chỉ</th>
+                            <th style="width: 150px">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="StudentCreateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm Học sinh</h5>
+                <button type="button" class="close" id="btnCloseStudentModal">&times;</button>
+            </div>
+            <form id="StudentCreateForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Mã học sinh</label>
+                        <input type="text" name="StudentCode" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Họ và Tên</label>
+                        <input type="text" name="FullName" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Lớp học</label>
+                        <select name="ClassId" id="StudentClassSelect" class="form-control" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Giới tính</label>
+                        <select name="Gender" class="form-control">
+                            <option value="true">Nam</option>
+                            <option value="false">Nữ</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Địa chỉ</label>
+                        <input type="text" name="Address" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="btnCancelStudentModal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

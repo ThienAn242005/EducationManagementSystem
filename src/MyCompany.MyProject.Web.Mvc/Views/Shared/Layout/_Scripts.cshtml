@@ -1,0 +1,51 @@
+﻿@using System.Globalization
+@using Abp.AspNetCore.Mvc.Caching
+@using Abp.CachedUniqueKeys
+@inject MyCompany.MyProject.Timing.AppTimes AppTimes
+@inject ICachedUniqueKeyPerUser CachedUniqueKeyPerUser
+@inject IGetScriptsResponsePerUserConfiguration GetScriptsResponsePerUserConfiguration
+
+<script src="~/view-resources/Views/_Bundles/shared-layout.min.js" asp-append-version="true"></script>
+<script type="text/javascript">
+    // This is used to get the application's root path from javascript.
+    // It's useful if you're running application in a virtual directory under IIS.
+    var abp = abp || {};
+    abp.appPath = '@ApplicationPath';
+</script>
+
+@if (CultureInfo.CurrentUICulture.Name != "en")
+{
+    var normalizedCurrentUICultureName = CultureInfo.CurrentUICulture.Name.Replace("-", "_");
+    var localizationFileNameWithExtension = "messages_";
+    switch (normalizedCurrentUICultureName)
+    {
+        case "zh_Hans":
+            localizationFileNameWithExtension += "zh";
+            break;
+        case "es_MX":
+            localizationFileNameWithExtension += "es";
+            break;
+        default:
+            localizationFileNameWithExtension += normalizedCurrentUICultureName;
+            break;
+    }
+    localizationFileNameWithExtension += ".min.js";
+    <script src="~/libs/jquery-validate/localization/@localizationFileNameWithExtension" asp-append-version="true"></script>
+}
+
+<script type="text/javascript">
+        // Localizing momentjs
+        moment.locale('@CultureInfo.CurrentUICulture.Name');
+</script>
+
+<!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
+<script src="~/AbpServiceProxies/GetAll?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
+
+@if (GetScriptsResponsePerUserConfiguration.IsEnabled)
+{
+    <script src="@(ApplicationPath)AbpScripts/GetScripts?v=@(await CachedUniqueKeyPerUser.GetKeyAsync(GetScriptsResponsePerUserCache.CacheName))" type="text/javascript"></script>
+}
+else
+{
+    <script src="@(ApplicationPath)AbpScripts/GetScripts?v=@(AppTimes.StartupTime.Ticks)" type="text/javascript"></script>
+}

@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Phân công Giảng dạy";
+}
+@section scripts {
+    <script src="~/view-resources/Views/TeachingAssignment/Index.js" asp-append-version="true"></script>
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6"><h1>Phân công Giảng dạy</h1></div>
+            <div class="col-sm-6 text-right">
+                <button type="button" id="btnCreateAssign" class="btn btn-primary">
+                    <i class="fa fa-plus-square"></i> Thêm phân công
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-body table-responsive">
+                <table id="AssignTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Giáo viên</th>
+                            <th>Lớp học</th>
+                            <th>Môn học</th>
+                            <th>Học kỳ</th>
+                            <th style="width: 150px">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="AssignModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Thêm Phân công Giáo viên</h5>
+                <button type="button" class="close" id="btnCloseAssignModal">&times;</button>
+            </div>
+            <form id="AssignForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Giáo viên</label>
+                        <select name="TeacherId" id="AssignTeacherSelect" class="form-control" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Lớp học</label>
+                        <select name="ClassId" id="AssignClassSelect" class="form-control" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Môn học</label>
+                        <select name="SubjectId" id="AssignSubjectSelect" class="form-control" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Học kỳ</label>
+                        <select name="SemesterId" id="AssignSemesterSelect" class="form-control" required></select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
