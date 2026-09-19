@@ -21,25 +21,17 @@ public class SemesterAppService : AsyncCrudAppService<
 
     public override async Task<SemesterDto> CreateAsync(CreateUpdateSemesterDto input)
     {
-        try
+        if (input.IsCurrent)
         {
-            return await base.CreateAsync(input);
-        }
-        catch (Exception ex)
-        {
-            var message = ex.Message;
+            var currentSemesters = await Repository.GetAllListAsync(x => x.IsCurrent);
 
-            var inner = ex.InnerException;
-
-            while (inner != null)
+            foreach (var semester in currentSemesters)
             {
-                message += " | INNER: " + inner.Message;
-                inner = inner.InnerException;
+                semester.IsCurrent = false;
+                await Repository.UpdateAsync(semester);
             }
-
-            throw new UserFriendlyException(
-                "LỖI CREATE SEMESTER: " + message
-            );
         }
+
+        return await base.CreateAsync(input);
     }
 }

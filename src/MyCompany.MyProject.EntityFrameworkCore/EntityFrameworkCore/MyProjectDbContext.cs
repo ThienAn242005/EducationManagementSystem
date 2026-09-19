@@ -49,5 +49,23 @@ public class MyProjectDbContext : AbpZeroDbContext<Tenant, Role, User, MyProject
             .WithMany()
             .HasForeignKey(c => c.HeadTeacherId)
             .OnDelete(DeleteBehavior.Restrict);
+        // 5. Mã môn không được trùng trong cùng Tenant
+        modelBuilder.Entity<Subject>()
+            .HasIndex(s => new { s.TenantId, s.Code })
+            .IsUnique();
+
+        // 6. Tên môn không được trùng trong cùng Tenant
+        modelBuilder.Entity<Subject>()
+            .HasIndex(s => new { s.TenantId, s.Name })
+            .IsUnique();
+
+        // 7. Tên học kỳ không được trùng trong cùng Tenant
+        modelBuilder.Entity<Semester>()
+            .HasIndex(s => new { s.TenantId, s.Name })
+            .IsUnique();
+        // 8. Tên lớp học không được trùng trong cùng Tenant
+        modelBuilder.Entity<Class>()
+            .HasIndex(c => new { c.TenantId, c.ClassName })
+            .IsUnique();
     }
 }

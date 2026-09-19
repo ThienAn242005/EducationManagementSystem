@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyCompany.MyProject.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ using MyCompany.MyProject.EntityFrameworkCore;
 namespace MyCompany.MyProject.Migrations
 {
     [DbContext(typeof(MyProjectDbContext))]
-    partial class MyProjectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260919164302_AddSSubjectField")]
+    partial class AddSSubjectField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

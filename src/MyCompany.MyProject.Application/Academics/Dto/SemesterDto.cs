@@ -25,11 +25,13 @@ namespace MyCompany.MyProject.Academics.Dto
     public class SemesterDto : SemesterDtoBase, IEntityDto<int>
     {
         public int Id { get; set; }
+        public int SemesterNumber { get; set; }
     }
 
     [AutoMapTo(typeof(Semester))]
     public class CreateUpdateSemesterDto : SemesterDtoBase, IEntityDto<int>
     {
         public int Id { get; set; }
+        public int SemesterNumber { get; set; }
     }
 }

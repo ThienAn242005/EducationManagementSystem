@@ -22,6 +22,7 @@ namespace MyCompany.MyProject.Academics
         public int StartYear { get; set; }
 
         public int SemesterNumber { get; set; }
+        public bool IsCurrent { get; set; }
         [NotMapped]
         public string AcademicYearDisplay => $"{StartYear} - {StartYear + 1}";
 

@@ -9,32 +9,66 @@
     function initFilters() {
         _semesterService.getAll({ maxResultCount: 100 }).done(function (res) {
             $('#SemesterFilter').html('<option value="">-- Chọn Học kỳ --</option>');
-            res.items.forEach(i => $('#SemesterFilter').append(new Option(i.name, i.id)));
+
+            res.items.forEach(i =>
+                $('#SemesterFilter').append(
+                    new Option(i.name, i.id)
+                )
+            );
         });
+
         _classService.getAll({ maxResultCount: 100 }).done(function (res) {
             $('#ClassFilter').html('<option value="">-- Chọn Lớp --</option>');
-            res.items.forEach(i => $('#ClassFilter').append(new Option(i.className, i.id)));
+
+            res.items.forEach(i =>
+                $('#ClassFilter').append(
+                    new Option(i.className, i.id)
+                )
+            );
         });
-        _subjectService.getAll({ maxResultCount: 100 }).done(function (res) {
-            $('#SubjectFilter').html('<option value="">-- Chọn Môn --</option>');
-            res.items.forEach(i => $('#SubjectFilter').append(new Option(i.name, i.id)));
-        });
+
+        $('#SubjectFilter').html(
+            '<option value="">-- Chọn Lớp trước --</option>'
+        );
     }
 
     initFilters();
 
-    // Bắt sự kiện chọn đủ 3 dropdown
-    $('#SemesterFilter, #ClassFilter, #SubjectFilter').change(function () {
-        var semId = $('#SemesterFilter').val();
-        var clsId = $('#ClassFilter').val();
-        var subId = $('#SubjectFilter').val();
+    function loadSubjectsByClass(classId) {
+        $('#SubjectFilter').html(
+            '<option value="">-- Chọn Môn --</option>'
+        );
 
-        if (semId && clsId && subId) {
-            loadGradeBook(clsId, subId, semId);
-        } else {
-            $('#GradeTableBody').html('<tr><td colspan="9" class="text-muted">Vui lòng chọn đầy đủ Học kỳ, Lớp và Môn để tải sổ điểm.</td></tr>');
-            $('#btnSaveGrade, #btnLockGrade').hide();
+        if (!classId) {
+            return;
         }
+
+        _subjectService.getSubjectsByClass(parseInt(classId))
+            .done(function (subjects) {
+                subjects.forEach(function (subject) {
+                    $('#SubjectFilter').append(
+                        new Option(subject.name, subject.id)
+                    );
+                });
+            });
+    }
+
+    $('#ClassFilter').change(function () {
+        var classId = $(this).val();
+
+        $('#SubjectFilter').html(
+            '<option value="">-- Chọn Môn --</option>'
+        );
+
+        $('#GradeTableBody').html(
+            '<tr><td colspan="9" class="text-muted">' +
+            'Vui lòng chọn đầy đủ Học kỳ, Lớp và Môn để tải sổ điểm.' +
+            '</td></tr>'
+        );
+
+        $('#btnSaveGrade, #btnLockGrade').hide();
+
+        loadSubjectsByClass(classId);
     });
 
     function loadGradeBook(classId, subjectId, semesterId) {

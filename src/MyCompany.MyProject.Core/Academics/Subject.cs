@@ -15,9 +15,11 @@ namespace MyCompany.MyProject.Academics
             public string Code { get; set; }
 
             [Required]
-            [MaxLength(50)]
+            [MaxLength(100)]
             public string Name { get; set; }
+            public int Factor { get; set; } = 1;
 
             public int NumberOfLessons { get; set; }
-        }
+            public GradeLevel Grade { get; set; }
+    }
     }

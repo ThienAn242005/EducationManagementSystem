@@ -18,9 +18,11 @@ namespace MyCompany.MyProject.Academics.Dto
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
+        public int NumberOfLessons { get; set; }
 
         [Range(1, 10)]
         public int Factor { get; set; } = 1;
+        public GradeLevel Grade { get; set; }
     }
 
     [AutoMapFrom(typeof(Subject))]
@@ -33,5 +35,6 @@ namespace MyCompany.MyProject.Academics.Dto
     public class CreateUpdateSubjectDto : SubjectDtoBase, IEntityDto<int>
     {
         public int Id { get; set; }
+
     }
 }

@@ -30,6 +30,6 @@ namespace MyCompany.MyProject.Academics.Dto
     public class CreateUpdateClassDto : EntityDto<int>
     {
         public string ClassName { get; set; }
-        public GradeLevel GradeLevel { get; set; }
+        public GradeLevel Grade { get; set; }
     }
 }

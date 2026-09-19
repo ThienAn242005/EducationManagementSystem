@@ -26,6 +26,7 @@
                     <thead>
                         <tr>
                             <th>Tên học kỳ</th>
+                            <th>Học kỳ </th>
                             <th>Năm bắt đầu</th>
                             <th>Trạng thái hiện tại</th>
                             <th style="width: 150px">Thao tác</th>
@@ -42,7 +43,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Thêm Học kỳ</h5>
+                <h5 class="modal-title" id="SemesterModalTitle">Thêm Học kỳ</h5>
                 <button type="button" class="close" id="btnCloseSemesterModal">&times;</button>
             </div>
             <form id="SemesterCreateForm">
@@ -50,6 +51,13 @@
                     <div class="form-group">
                         <label>Tên học kỳ</label>
                         <input type="text" name="Name" class="form-control" placeholder="Ví dụ: Học kỳ 1 - 2026" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Học kỳ</label>
+                        <select name="SemesterNumber" class="form-control">
+                            <option value="1">Học kỳ 1</option>
+                            <option value="2">Học kỳ 2</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label>Năm bắt đầu</label>

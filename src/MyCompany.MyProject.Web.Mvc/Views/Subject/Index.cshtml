@@ -1,6 +1,7 @@
 ﻿@{
     ViewBag.Title = "Quản lý Môn học";
 }
+
 @section scripts {
     <script src="~/view-resources/Views/Subject/Index.js" asp-append-version="true"></script>
 }
@@ -8,9 +9,14 @@
 <section class="content-header">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-6"><h1>Danh sách Môn học</h1></div>
+            <div class="col-sm-6">
+                <h1>Danh sách Môn học</h1>
+            </div>
+
             <div class="col-sm-6 text-right">
-                <button type="button" id="btnCreateSubject" class="btn btn-primary">
+                <button type="button"
+                        id="btnCreateSubject"
+                        class="btn btn-primary">
                     <i class="fa fa-plus-square"></i> Thêm Môn học
                 </button>
             </div>
@@ -22,15 +28,22 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body table-responsive">
-                <table id="SubjectTable" class="table table-bordered table-striped">
+                <table id="SubjectTable"
+                       class="table table-bordered table-striped">
+
                     <thead>
                         <tr>
                             <th>Mã môn</th>
                             <th>Tên môn</th>
+                            <th>Khối</th>
                             <th>Hệ số môn</th>
-                            <th style="width: 150px">Thao tác</th>
+                            <th>Số tiết</th>
+                            <th style="width: 180px">
+                                Thao tác
+                            </th>
                         </tr>
                     </thead>
+
                     <tbody></tbody>
                 </table>
             </div>
@@ -38,20 +51,34 @@
     </div>
 </section>
 
-<div class="modal fade" id="SubjectCreateModal" tabindex="-1" role="dialog">
+<div class="modal fade"
+     id="SubjectCreateModal"
+     tabindex="-1"
+     role="dialog">
+
     <div class="modal-dialog" role="document">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title">Thêm Môn học</h5>
-                <button type="button" class="close" id="btnCloseSubjectModal">&times;</button>
+                <h5 class="modal-title"
+                    id="SubjectModalTitle">
+                    Thêm Môn học
+                </h5>
+
+                <button type="button"
+                        class="close"
+                        id="btnCloseSubjectModal">
+                    &times;
+                </button>
             </div>
 
             <form id="SubjectCreateForm">
+
                 <div class="modal-body">
 
                     <div class="form-group">
                         <label>Mã môn học</label>
+
                         <input type="text"
                                name="Code"
                                class="form-control"
@@ -61,6 +88,7 @@
 
                     <div class="form-group">
                         <label>Tên môn học</label>
+
                         <input type="text"
                                name="Name"
                                class="form-control"
@@ -69,7 +97,34 @@
                     </div>
 
                     <div class="form-group">
+                        <label>Khối</label>
+
+                        <select name="Grade"
+                                class="form-control"
+                                required>
+
+                            <option value="">
+                                -- Chọn khối --
+                            </option>
+
+                            <option value="1">
+                                Khối 10
+                            </option>
+
+                            <option value="2">
+                                Khối 11
+                            </option>
+
+                            <option value="3">
+                                Khối 12
+                            </option>
+
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <label>Hệ số</label>
+
                         <input type="number"
                                name="Factor"
                                class="form-control"
@@ -79,19 +134,35 @@
                                required />
                     </div>
 
+                    <div class="form-group">
+                        <label>Số tiết</label>
+
+                        <input type="number"
+                               name="NumberOfLessons"
+                               class="form-control"
+                               value="45"
+                               min="1"
+                               required />
+                    </div>
+
                 </div>
 
                 <div class="modal-footer">
+
                     <button type="button"
                             class="btn btn-secondary"
                             id="btnCancelSubjectModal">
                         Hủy
                     </button>
 
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit"
+                            class="btn btn-primary"
+                            id="btnSaveSubject">
                         Lưu
                     </button>
+
                 </div>
+
             </form>
 
         </div>
