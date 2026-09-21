@@ -246,7 +246,7 @@
 ```text
 💻 ASP.NET Core
 ⚡ .NET 9
-🏗️ ASP.NET Zero / ABP
+🏗️ ASP.NET Boilerplate
 🗄️ Entity Framework Core
 🛢️ SQL Server
 🔐 JWT Authentication
